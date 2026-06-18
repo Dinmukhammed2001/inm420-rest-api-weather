@@ -11,16 +11,19 @@
 </head>
 <body>
 
-  <div class="wrapper">
+  <main class="wrapper">
 
+    <!-- page header / title -->
     <header class="header">
-      <p class="eyebrow">INM420 — REST API Assignment</p>
+      <p class="eyebrow">inm420 — rest api assignment</p>
       <h1>Weather<span>Now</span></h1>
-      <p>Select a city to fetch live weather data.</p>
+      <p>Pick a city or type your own, then fetch live weather data.</p>
     </header>
 
-    <div class="controls">
-      <label class="field-label" for="city-select">Choose a city</label>
+    <!-- user input controls: dropdown of preset cities + free text input -->
+    <section class="controls" aria-label="weather search controls">
+
+      <label class="field-label" for="city-select">choose a preset city</label>
       <select id="city-select">
         <option value="">— pick a location —</option>
         <option value="Toronto">Toronto, Canada</option>
@@ -29,50 +32,63 @@
         <option value="Tokyo">Tokyo, Japan</option>
         <option value="Dubai">Dubai, UAE</option>
       </select>
-      <button class="btn" id="fetch-btn">
+
+      <div class="divider"><span>or</span></div>
+
+      <label class="field-label" for="city-input">type any city name</label>
+      <input
+        type="text"
+        id="city-input"
+        placeholder="e.g. Almaty, Paris, Cairo…"
+        autocomplete="off"
+      />
+
+      <button class="btn" id="fetch-btn" type="button">
         <span class="btn-inner">
-          <span class="spinner"></span>
+          <span class="spinner" aria-hidden="true"></span>
           <span class="btn-label">Get Weather</span>
         </span>
       </button>
-    </div>
+    </section>
 
-    <div class="error-msg" id="error-msg"></div>
+    <!-- error feedback, hidden unless a request fails -->
+    <p class="error-msg" id="error-msg" role="alert"></p>
 
-    <div class="result" id="result">
+    <!-- api result, populated dynamically via JS DOM manipulation -->
+    <section class="result" id="result" aria-live="polite">
       <div class="result-banner" id="result-banner">
-        <img class="weather-icon" id="weather-icon" src="" alt="weather icon" />
+        <img class="weather-icon" id="weather-icon" src="" alt="" />
         <div class="banner-text">
-          <div class="city" id="city-name"></div>
-          <div class="country" id="country-name"></div>
-          <div class="condition" id="condition-text"></div>
+          <p class="city" id="city-name"></p>
+          <p class="country" id="country-name"></p>
+          <p class="condition" id="condition-text"></p>
         </div>
       </div>
       <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Temperature</div>
-          <div class="stat-value" id="temp-c">—<span class="unit">°C</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Feels Like</div>
-          <div class="stat-value" id="feels-like">—<span class="unit">°C</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Humidity</div>
-          <div class="stat-value" id="humidity">—<span class="unit">%</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Wind Speed</div>
-          <div class="stat-value" id="wind-speed">—<span class="unit">km/h</span></div>
-        </div>
+        <article class="stat">
+          <p class="stat-label">temperature</p>
+          <p class="stat-value" id="temp-c">—<span class="unit">°C</span></p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">feels like</p>
+          <p class="stat-value" id="feels-like">—<span class="unit">°C</span></p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">humidity</p>
+          <p class="stat-value" id="humidity">—<span class="unit">%</span></p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">wind speed</p>
+          <p class="stat-value" id="wind-speed">—<span class="unit">km/h</span></p>
+        </article>
       </div>
-    </div>
+    </section>
 
     <footer class="footer">
-      Powered by <a href="https://www.weatherapi.com/" target="_blank">WeatherAPI.com</a>
+      <p>powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">weatherapi.com</a></p>
     </footer>
 
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
