@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherNow — INM420 REST API Assignment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <header class="header">
+      <p class="eyebrow">INM420 — REST API Assignment</p>
+      <h1>Weather<span>Now</span></h1>
+      <p>Select a city to fetch live weather data.</p>
+    </header>
+
+    <div class="controls">
+      <label class="field-label" for="city-select">Choose a city</label>
+      <select id="city-select">
+        <option value="">— pick a location —</option>
+        <option value="Toronto">Toronto, Canada</option>
+        <option value="New York">New York, USA</option>
+        <option value="London">London, UK</option>
+        <option value="Tokyo">Tokyo, Japan</option>
+        <option value="Dubai">Dubai, UAE</option>
+      </select>
+      <button class="btn" id="fetch-btn">
+        <span class="btn-inner">
+          <span class="spinner"></span>
+          <span class="btn-label">Get Weather</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="result" id="result">
+      <div class="result-banner" id="result-banner">
+        <img class="weather-icon" id="weather-icon" src="" alt="weather icon" />
+        <div class="banner-text">
+          <div class="city" id="city-name"></div>
+          <div class="country" id="country-name"></div>
+          <div class="condition" id="condition-text"></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Temperature</div>
+          <div class="stat-value" id="temp-c">—<span class="unit">°C</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Feels Like</div>
+          <div class="stat-value" id="feels-like">—<span class="unit">°C</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Humidity</div>
+          <div class="stat-value" id="humidity">—<span class="unit">%</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Wind Speed</div>
+          <div class="stat-value" id="wind-speed">—<span class="unit">km/h</span></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Powered by <a href="https://www.weatherapi.com/" target="_blank">WeatherAPI.com</a>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
