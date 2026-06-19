@@ -1,91 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeatherNow — INM420 REST API Assignment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App - INM420 Rest API Assignment</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <main class="wrapper">
+  <main class="container">
 
-    <!-- page header / title -->
-    <header class="header">
-      <p class="eyebrow">inm420 — rest api assignment</p>
-      <h1>Weather<span>Now</span></h1>
-      <p>Pick a city or type your own, then fetch live weather data.</p>
-    </header>
+    <h1>Current Weather</h1>
+    <p>Select a city from the list, or type your own city name below.</p>
 
-    <!-- user input controls: dropdown of preset cities + free text input -->
-    <section class="controls" aria-label="weather search controls">
+    <!-- search controls -->
+    <section class="search-box">
 
-      <label class="field-label" for="city-select">choose a preset city</label>
+      <label for="city-select">Select a city:</label>
       <select id="city-select">
-        <option value="">— pick a location —</option>
-        <option value="Toronto">Toronto, Canada</option>
-        <option value="New York">New York, USA</option>
-        <option value="London">London, UK</option>
-        <option value="Tokyo">Tokyo, Japan</option>
-        <option value="Dubai">Dubai, UAE</option>
+        <option value="">-- choose a city --</option>
+        <option value="Toronto">Toronto</option>
+        <option value="New York">New York</option>
+        <option value="London">London</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="Dubai">Dubai</option>
       </select>
 
-      <div class="divider"><span>or</span></div>
+      <p>or</p>
 
-      <label class="field-label" for="city-input">type any city name</label>
-      <input
-        type="text"
-        id="city-input"
-        placeholder="e.g. Almaty, Paris, Cairo…"
-        autocomplete="off"
-      />
+      <label for="city-input">Type a city name:</label>
+      <input type="text" id="city-input" placeholder="e.g. Almaty">
 
-      <button class="btn" id="fetch-btn" type="button">
-        <span class="btn-inner">
-          <span class="spinner" aria-hidden="true"></span>
-          <span class="btn-label">Get Weather</span>
-        </span>
-      </button>
+      <button id="search-btn">Get Weather</button>
+
     </section>
 
-    <!-- error feedback, hidden unless a request fails -->
-    <p class="error-msg" id="error-msg" role="alert"></p>
+    <!-- error message, hidden until something goes wrong -->
+    <p id="error-message" class="error"></p>
 
-    <!-- api result, populated dynamically via JS DOM manipulation -->
-    <section class="result" id="result" aria-live="polite">
-      <div class="result-banner" id="result-banner">
-        <img class="weather-icon" id="weather-icon" src="" alt="" />
-        <div class="banner-text">
-          <p class="city" id="city-name"></p>
-          <p class="country" id="country-name"></p>
-          <p class="condition" id="condition-text"></p>
-        </div>
-      </div>
-      <div class="stats">
-        <article class="stat">
-          <p class="stat-label">temperature</p>
-          <p class="stat-value" id="temp-c">—<span class="unit">°C</span></p>
-        </article>
-        <article class="stat">
-          <p class="stat-label">feels like</p>
-          <p class="stat-value" id="feels-like">—<span class="unit">°C</span></p>
-        </article>
-        <article class="stat">
-          <p class="stat-label">humidity</p>
-          <p class="stat-value" id="humidity">—<span class="unit">%</span></p>
-        </article>
-        <article class="stat">
-          <p class="stat-label">wind speed</p>
-          <p class="stat-value" id="wind-speed">—<span class="unit">km/h</span></p>
-        </article>
-      </div>
+    <!-- weather result, filled in by script.js -->
+    <section id="weather-result" class="result">
+      <h2 id="city-name"></h2>
+      <p id="country-name"></p>
+      <img id="weather-icon" src="" alt="">
+      <p id="condition-text"></p>
+
+      <ul class="stats-list">
+        <li>Temperature: <span id="temp-c"></span> °C</li>
+        <li>Feels Like: <span id="feels-like"></span> °C</li>
+        <li>Humidity: <span id="humidity"></span> %</li>
+        <li>Wind Speed: <span id="wind-speed"></span> km/h</li>
+      </ul>
     </section>
 
-    <footer class="footer">
-      <p>powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">weatherapi.com</a></p>
+    <footer>
+      <p>Data from <a href="https://www.weatherapi.com/" target="_blank">WeatherAPI.com</a></p>
     </footer>
 
   </main>
